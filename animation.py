@@ -145,3 +145,4 @@ updated_readme_content = re.sub(
 
 with open(readme_path, "w") as readme_file:
     readme_file.write(updated_readme_content)
+
