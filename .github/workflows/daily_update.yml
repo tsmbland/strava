@@ -37,6 +37,7 @@ jobs:
         git commit -m "Daily animation update" 
 
     - name: Squash
+      run: |
         last_commit_message=$(git log -1 --pretty=%B)
         second_last_commit_message=$(git log -2 --pretty=%B | tail -2)
         
