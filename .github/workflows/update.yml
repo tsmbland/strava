@@ -1,8 +1,6 @@
 name: Daily update
 
-on:
-  schedule:
-    - cron: '0 0 * * *'  # Schedule: At midnight (00:00) every day
+on: workflow_dispatch
 
 jobs:
   build:
@@ -34,7 +32,7 @@ jobs:
     - name: Commit
       run: |
         git add .
-        git commit -m "Daily animation update" 
+        git commit -m "Update animation" 
 
     - name: Squash
       run: |
