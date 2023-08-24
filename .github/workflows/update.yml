@@ -21,7 +21,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run animation script
-      run: python animation.py  
+      run: python animation.py  ${{ secrets.CLIENT_ID }} ${{ secrets.CLIENT_SECRET }} ${{ secrets.REFRESH_TOKEN }} 
 
     - name: Set up Git
       run: |
