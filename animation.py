@@ -1,5 +1,7 @@
 import requests
 import urllib3
+import os
+import sys
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import numpy as np
@@ -22,13 +24,25 @@ Download data using API
 auth_url = "https://www.strava.com/oauth/token"
 activites_url = "https://www.strava.com/api/v3/athlete/activities"
 
-payload = {
-    "client_id": open("client_id", "r").read(),
-    "client_secret": open("client_secret", "r").read(),
-    "refresh_token": open("refresh_token", "r").read(),
-    "grant_type": "refresh_token",
-    "f": "json",
-}
+# If running locally:
+if os.path.exists('client_id'):
+    payload = {
+        "client_id": open("client_id", "r").read(),
+        "client_secret": open("client_secret", "r").read(),
+        "refresh_token": open("refresh_token", "r").read(),
+        "grant_type": "refresh_token",
+        "f": "json",
+    }
+
+# If running on github
+else:
+    payload = {
+        "client_id": sys.argv[1],
+        "client_secret": sys.argv[2],
+        "refresh_token": sys.argv[3],
+        "grant_type": "refresh_token",
+        "f": "json",
+    }
 
 res = requests.post(auth_url, data=payload, verify=False)
 access_token = res.json()["access_token"]
